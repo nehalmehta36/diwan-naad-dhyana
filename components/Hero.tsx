@@ -50,10 +50,10 @@ export default function Hero() {
           </h1>
           <div className="hero-ctas">
             <a className="btn-primary" href="#book">
-              Book a Session
+              {site.hero.primaryCta}
             </a>
             <a className="btn-ghost" href="#offerings">
-              Explore Offerings
+              {site.hero.secondaryCta}
             </a>
           </div>
         </div>

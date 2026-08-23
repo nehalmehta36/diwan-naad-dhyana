@@ -20,6 +20,8 @@ export const site = {
     shlokaLines: ["सर्वं शान्तं शिवं ब्रह्म", "नादे लीनं निरामयम्।"],
     tagline: "Stillness dissolves into sound",
     closingLine: "Every string, a resonance.\nEvery session, a return to stillness.",
+    primaryCta: "Book a Session",
+    secondaryCta: "Explore Offerings",
   },
   benefits: [
     { label: "Sound Meditation" },
