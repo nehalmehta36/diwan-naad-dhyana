@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Assistant, Noto_Serif_Devanagari } from "next/font/google";
+import MotionProvider from "@/components/MotionProvider";
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
@@ -32,7 +33,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       lang="en"
       className={`${cormorant.variable} ${assistant.variable} ${notoDevanagari.variable}`}
     >
-      <body className="font-body">{children}</body>
+      <body className="font-body">
+        <MotionProvider>{children}</MotionProvider>
+      </body>
     </html>
   );
 }

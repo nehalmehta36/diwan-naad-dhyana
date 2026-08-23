@@ -23,7 +23,7 @@ export default function Testimonials() {
             <p className="mb-4 italic leading-relaxed text-ink-soft">
               &ldquo;{testimonial.quote}&rdquo;
             </p>
-            <p className="text-sm font-semibold text-gold">{testimonial.attribution}</p>
+            <p className="text-sm font-semibold text-ink-soft">{testimonial.attribution}</p>
           </motion.div>
         ))}
       </div>

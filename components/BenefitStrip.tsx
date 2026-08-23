@@ -7,7 +7,7 @@ const ICONS = ["♪", "✿", "◐", "♡", "☾"];
 
 export default function BenefitStrip() {
   return (
-    <div className="flex flex-wrap justify-center bg-ink px-[4vw] py-8 text-cream-deep">
+    <section className="flex flex-wrap justify-center bg-ink px-[4vw] py-8 text-cream-deep">
       {site.benefits.map((benefit, i) => (
         <motion.div
           key={benefit.label}
@@ -23,6 +23,6 @@ export default function BenefitStrip() {
           <p className="text-sm font-medium leading-tight">{benefit.label}</p>
         </motion.div>
       ))}
-    </div>
+    </section>
   );
 }

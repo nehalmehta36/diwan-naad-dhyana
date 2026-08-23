@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useRef } from "react";
+import { useRef, useMemo } from "react";
 import { site } from "@/content/site";
 
 const HeroScene = dynamic(() => import("./HeroScene"), { ssr: false });
@@ -12,6 +12,7 @@ export default function Hero() {
   const copy2Ref = useRef<HTMLDivElement>(null);
   const copy3Ref = useRef<HTMLDivElement>(null);
   const scrollCueRef = useRef<HTMLDivElement>(null);
+  const copyRefs = useMemo(() => [copy1Ref, copy2Ref, copy3Ref] as const, []);
   const closingLines = site.hero.closingLine.split("\n");
 
   return (
@@ -19,7 +20,7 @@ export default function Hero() {
       <div className="sticky top-0 flex h-[100dvh] items-center justify-center overflow-hidden bg-[radial-gradient(120%_90%_at_50%_30%,#3a2818_0%,#241708_60%,#170f07_100%)]">
         <HeroScene
           heroSectionRef={heroSectionRef}
-          copyRefs={[copy1Ref, copy2Ref, copy3Ref]}
+          copyRefs={copyRefs}
           scrollCueRef={scrollCueRef}
         />
         <div className="hero-scrim" />
@@ -29,7 +30,7 @@ export default function Hero() {
           <div className="rule" />
         </div>
         <div ref={copy2Ref} className="hero-copy" style={{ opacity: 0 }}>
-          <p className="shloka">
+          <p className="shloka" lang="sa">
             {site.hero.shlokaLines.map((line, i) => (
               <span key={line}>
                 {line}

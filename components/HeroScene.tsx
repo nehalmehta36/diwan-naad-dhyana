@@ -31,7 +31,7 @@ function fadeWindow(
 
 interface HeroSceneProps {
   heroSectionRef: RefObject<HTMLDivElement | null>;
-  copyRefs: [
+  copyRefs: readonly [
     RefObject<HTMLDivElement | null>,
     RefObject<HTMLDivElement | null>,
     RefObject<HTMLDivElement | null>,
@@ -53,9 +53,18 @@ export default function HeroScene({ heroSectionRef, copyRefs, scrollCueRef }: He
 
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduceMotion) {
-      if (copy1) copy1.style.opacity = "0";
-      if (copy2) copy2.style.opacity = "0";
-      if (copy3) copy3.style.opacity = "1";
+      if (copy1) {
+        copy1.style.opacity = "0";
+        copy1.style.visibility = "hidden";
+      }
+      if (copy2) {
+        copy2.style.opacity = "0";
+        copy2.style.visibility = "hidden";
+      }
+      if (copy3) {
+        copy3.style.opacity = "1";
+        copy3.style.visibility = "visible";
+      }
       if (scrollCue) scrollCue.style.opacity = "0";
       return;
     }
@@ -186,9 +195,21 @@ export default function HeroScene({ heroSectionRef, copyRefs, scrollCueRef }: He
       const p = clamp(scrolled / total, 0, 1);
       targetP = p;
 
-      if (copy1) copy1.style.opacity = String(fadeWindow(p, 0, 0.04, 0.18, 0.3));
-      if (copy2) copy2.style.opacity = String(fadeWindow(p, 0.32, 0.42, 0.55, 0.68));
-      if (copy3) copy3.style.opacity = String(fadeWindow(p, 0.7, 0.82, 1.01, 1.02));
+      const v1 = fadeWindow(p, -0.001, 0.04, 0.18, 0.3);
+      if (copy1) {
+        copy1.style.opacity = String(v1);
+        copy1.style.visibility = v1 > 0.01 ? "visible" : "hidden";
+      }
+      const v2 = fadeWindow(p, 0.32, 0.42, 0.55, 0.68);
+      if (copy2) {
+        copy2.style.opacity = String(v2);
+        copy2.style.visibility = v2 > 0.01 ? "visible" : "hidden";
+      }
+      const v3 = fadeWindow(p, 0.7, 0.82, 1.01, 1.02);
+      if (copy3) {
+        copy3.style.opacity = String(v3);
+        copy3.style.visibility = v3 > 0.01 ? "visible" : "hidden";
+      }
       if (scrollCue) scrollCue.style.opacity = p < 0.05 ? "0.7" : "0";
     }
     document.addEventListener("scroll", onScroll, { passive: true });

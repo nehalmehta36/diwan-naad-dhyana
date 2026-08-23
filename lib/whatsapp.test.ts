@@ -5,11 +5,11 @@ describe("buildWhatsAppUrl", () => {
   it("builds a wa.me URL with the name and interest, URL-encoded", () => {
     const url = buildWhatsAppUrl({
       name: "Asha",
-      interest: "Personal Experience",
+      interest: "Personal Experiences",
       message: "",
     });
     expect(url).toBe(
-      "https://wa.me/918368426330?text=Hi%2C%20I'm%20Asha.%20I'm%20interested%20in%3A%20Personal%20Experience."
+      "https://wa.me/918368426330?text=Hi%2C%20I'm%20Asha.%20I'm%20interested%20in%3A%20Personal%20Experiences."
     );
   });
 
@@ -26,7 +26,7 @@ describe("buildWhatsAppUrl", () => {
   it("omits the trailing space when message is empty", () => {
     const url = buildWhatsAppUrl({
       name: "Priya",
-      interest: "Community Gathering",
+      interest: "Community Gatherings",
       message: "",
     });
     const decoded = decodeURIComponent(url.split("text=")[1]);

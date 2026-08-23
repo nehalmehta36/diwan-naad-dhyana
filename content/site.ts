@@ -73,6 +73,9 @@ export const site = {
     instagramUrl: "https://instagram.com/diwannaaddhyana",
     // TODO: confirm the standee QR code's actual target URL with Nehal —
     // defaulting to the Instagram profile until confirmed.
+    // Used for a physical QR-code standee, not rendered in-app.
     qrTargetUrl: "https://instagram.com/diwannaaddhyana",
   },
 } as const;
+
+export type InterestType = (typeof site.offerings)[number]["title"];
