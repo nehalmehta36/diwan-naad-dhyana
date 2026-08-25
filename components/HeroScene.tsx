@@ -195,7 +195,11 @@ export default function HeroScene({ heroSectionRef, copyRefs, scrollCueRef }: He
       const p = clamp(scrolled / total, 0, 1);
       targetP = p;
 
-      const v1 = fadeWindow(p, -0.001, 0.04, 0.18, 0.3);
+      // Fade-in window sits entirely below the clamped p>=0 floor, so beat 1
+      // is at full opacity from load (p=0) through the 0.18-0.3 fade-out —
+      // matching Task 6's "visible on load" requirement rather than fading
+      // in from empty at rest.
+      const v1 = fadeWindow(p, -0.04, -0.001, 0.18, 0.3);
       if (copy1) {
         copy1.style.opacity = String(v1);
         copy1.style.visibility = v1 > 0.01 ? "visible" : "hidden";
